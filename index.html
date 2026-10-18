@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Siêu Bựa Lớp 8C 🚀</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        brandYellow: '#FFDE59',
+                        brandPink: '#FF66C4',
+                        brandPurple: '#8C52FF',
+                        brandCyan: '#00C2CB',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'wiggle': 'wiggle 0.5s ease-in-out infinite',
+                        'pop-in': 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            min-height: 100vh;
+        }
+        .font-title {
+            font-family: 'Fredoka', cursive;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8C52FF;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF66C4;
+        }
+    </style>
+</head>
+<body class="text-white pb-12 flex flex-col min-h-screen">
+
+    <!-- Header Banner -->
+    <header class="relative overflow-hidden py-8 px-4 text-center border-b border-purple-500/30 bg-slate-900/40 backdrop-blur-md">
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="inline-block px-4 py-1.5 bg-yellow-400 text-slate-900 font-bold rounded-full text-xs md:text-sm uppercase tracking-widest mb-3 shadow-lg transform -rotate-2">
+                🔥 Kho Tàng Khoảnh Khắc 8C 🔥
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black font-title bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-400 to-cyan-300 drop-shadow-md tracking-wide">
+                KHOẢNG KHẮC 8C 
+            </h1>
+            <p class="text-slate-300 mt-2 text-sm md:text-base max-w-xl mx-auto">
+                Nhập tên thành viên bất kỳ trong 52 học sinh lớp 8C để khám phá bức ảnh độc quyền!
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 mt-8 flex-grow w-full">
+
+        <!-- Search Box Section -->
+        <section class="bg-slate-800/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-slate-700/60 shadow-2xl relative mb-10">
+            <div class="max-w-2xl mx-auto text-center">
+                <label for="studentInput" class="block text-lg font-bold text-yellow-300 mb-2 font-title flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass text-pink-400"></i> Tra Cứu Tư Liệu 8C
+                </label>
+                
+                <div class="relative mt-2">
+                    <input 
+                        type="text" 
+                        id="studentInput" 
+                        placeholder="Nhập tên bạn vào đây (ví dụ: Phương Anh, Tiến Minh, Khánh...)" 
+                        class="w-full px-5 py-4 pl-12 pr-28 rounded-2xl bg-slate-900/90 border-2 border-purple-500/50 text-white placeholder-slate-400 focus:outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-500/20 transition-all duration-300 text-base md:text-lg shadow-inner"
+                        autocomplete="off"
+                    >
+                    <i class="fa-solid fa-user-ninja absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                    
+                    <button 
+                        id="searchBtn"
+                        onclick="searchMeme()" 
+                        class="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold rounded-xl shadow-md transition-all duration-200 active:scale-95 text-sm md:text-base"
+                    >
+                        Xem Meme
+                    </button>
+                </div>
+
+                <!-- Chú thích hướng dẫn -->
+                <div class="mt-3 text-xs md:text-sm text-slate-300 bg-slate-900/50 p-3 rounded-xl border border-slate-700/50 text-left md:text-center flex items-start md:items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-cyan-400 text-base shrink-0 mt-0.5 md:mt-0"></i>
+                    <span><strong>Hướng dẫn:</strong> Nhập chính xác hoặc một phần tên (Không cần lo viết hoa/thường, số thứ tự hay khoảng trắng thừa). Bạn cũng có thể bấm chọn từ danh sách bên dưới!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meme Result Section -->
+        <section id="resultSection" class="hidden animate-pop-in mb-12">
+            <div id="memeCard" class="max-w-xl mx-auto bg-slate-800/90 rounded-3xl border-2 border-pink-500/40 p-6 shadow-2xl relative overflow-hidden">
+                <!-- Background decoration -->
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl"></div>
+
+                <!-- Header Card -->
+                <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 to-pink-500 flex items-center justify-center font-bold text-slate-900 text-lg shadow">
+                            8C
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Ảnh Siêu Độc Quyền</span>
+                            <h2 id="studentName" class="text-2xl font-black text-yellow-300 font-title">Ảnh của: </h2>
+                        </div>
+                    </div>
+                    <span id="studentId" class="text-xs px-3 py-1 bg-purple-900/60 text-purple-300 border border-purple-500/40 rounded-full font-mono">
+                        #STT: --
+                    </span>
+                </div>
+
+                <!-- Image Container -->
+                <div class="relative bg-slate-950 rounded-2xl overflow-hidden border border-slate-700 group flex items-center justify-center min-h-[280px]">
+                    
+                    <!-- ========================================================================= -->
+                    <!-- HƯỚNG DẪN DÀNH CHO BẠN:                                                    -->
+                    <!-- Để thay đổi ảnh của từng học sinh, bạn tìm mảng 'MEME_DATA' ở phần JS cuối file -->
+                    <!-- ========================================================================= -->
+                    
+                    <img 
+                        id="memeImage" 
+                        src="" 
+                        alt="Meme Học Sinh 8C" 
+                        class="w-full h-auto max-h-[450px] object-contain transition-transform duration-300 group-hover:scale-105"
+                        onerror="this.src='https://placehold.co/600x600/1e293b/FFDE59?text=Loi+Anh+Meme!';"
+                    >
+
+                    <!-- Caption overlay on hover/always -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-4 text-center">
+                        <p id="memeQuote" class="text-sm md:text-base font-bold text-cyan-300 italic font-title">
+                            "Học hết sức, quậy hết mình cùng 8C!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="mt-5 flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm">
+                    <button onclick="copyMemeLink()" class="flex-1 px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-copy"></i> Sao chép link ảnh
+                    </button>
+                    <button onclick="toggleEditUrlModal()" class="flex-1 px-4 py-2.5 bg-purple-900/50 hover:bg-purple-800/50 text-purple-200 font-semibold rounded-xl border border-purple-500/30 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-pen-to-square"></i> Đổi URL ảnh nhanh
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- No Result Alert (Hidden by default) -->
+        <section id="noResult" class="hidden text-center py-8 bg-slate-800/50 rounded-2xl border border-red-500/30 mb-10 max-w-xl mx-auto">
+            <i class="fa-solid fa-face-frown-open text-4xl text-pink-400 mb-2 animate-bounce"></i>
+            <h3 class="text-lg font-bold text-red-300 font-title">Không tìm thấy học sinh này!</h3>
+            <p class="text-slate-400 text-sm mt-1">Hãy kiểm tra lại danh sách 52 bạn học sinh bên dưới nhé.</p>
+        </section>
+
+        <!-- Full 52 Members Grid -->
+        <section class="bg-slate-800/60 backdrop-blur-md rounded-3xl p-6 border border-slate-700/80 shadow-xl">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 border-b border-slate-700 pb-4">
+                <div>
+                    <h3 class="text-xl font-bold font-title text-yellow-300 flex items-center gap-2">
+                        <i class="fa-solid fa-users text-cyan-400"></i> Danh Sách 52 Thành Viên Lớp 8C
+                    </h3>
+                    <p class="text-xs text-slate-400">Click vào tên bất kỳ người bạn nào để xem lập tức!</p>
+                </div>
+                <div class="text-xs bg-slate-900 px-3 py-1.5 rounded-full text-slate-300 border border-slate-700">
+                    Sĩ số: <span class="text-pink-400 font-bold">52/52</span>
+                </div>
+            </div>
+
+            <!-- List of students -->
+            <div id="membersGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+                <!-- Javascript will dynamically render 52 students here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal sửa URL ảnh nhanh cho người dùng tiện thử nghiệm -->
+    <div id="urlModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-800 border border-purple-500/40 rounded-3xl p-6 max-w-md w-full shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-yellow-300 font-title">Đổi đường dẫn ảnh Meme</h3>
+                <button onclick="toggleEditUrlModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-300 mb-3">
+                Nhập URL đường dẫn hình ảnh mới cho <span id="modalStudentName" class="font-bold text-pink-400"></span>:
+            </p>
+            <input 
+                type="text" 
+                id="newUrlInput" 
+                placeholder="https://example.com/anh-meme.jpg" 
+                class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-pink-500 mb-4"
+            >
+            <div class="flex justify-end gap-2">
+                <button onclick="toggleEditUrlModal()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-bold">Hủy</button>
+                <button onclick="saveCustomUrl()" class="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-xl text-xs font-bold">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-xs text-slate-500 border-t border-slate-800 py-6">
+        <p>🎉 Website Meme Lớp 8C - Lưu giữ kỷ niệm tuổi học trò hài hước & đáng nhớ!</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-pink-500 text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Thông báo</span>
+    </div>
+
+    <!-- JavaScript Processing -->
+    <script>
+        /**
+         * DANH SÁCH 52 THÀNH VIÊN LỚP 8C KÈM ĐƯỜNG DẪN ẢNH MEME
+         * 
+         * =========================================================================
+         * HƯỚNG DẪN THAY ĐỔI ĐƯỜNG DẪN ẢNH:
+         * Thay thế liên kết trong thuộc tính "image" dưới đây bằng link ảnh của bạn.
+         * Ví dụ: image: "https://ten-mien-cua-ban.com/anh-phuong-anh.jpg"
+         * hoặc nếu để cùng thư mục HTML: image: "images/phuong-anh.jpg"
+         * =========================================================================
+         */
+        const MEME_DATA = [
+            { id: 1, name: "Phương Anh", image: "https://placehold.co/600x600/FF66C4/ffffff?text=Meme+Ph%C6%B0%C1%A1ng+Anh+8C", quote: "Kẻ tự cô lập cả lớp" },
+            { id: 2, name: "Tiến", image: "https://cdn.phototourl.com/member/2026-10-18-c446abd1-ac2b-477f-990a-a8edbe189798.jpg", quote: "Nhìn cái gì mà nhìn?" },
+            { id: 3, name: "Kiều Tiên", image: "https://placehold.co/600x600/00C2CB/ffffff?text=Meme+Ti%C3%AAn+8C", quote: "Kh có j để ns" },
+            { id: 4, name: "Thiên", image: "https://placehold.co/600x600/FFDE59/333333?text=Meme+Thi%C3%AAn+8C", quote: "Thiên tài?" },
+            { id: 5, name: "Ngọc", image: "https://cdn.phototourl.com/member/2026-10-18-69787e8f-8718-4ad8-b2cd-afcb782501a1.jpg", quote: "Chị đại 8C" },
+            { id: 6, name: "Chi", image: "https://placehold.co/600x600/4CAF50/ffffff?text=Meme+Chi+8C", quote: "Điên" },
+            { id: 7, name: "Nhi", image: "https://placehold.co/600x600/E91E63/ffffff?text=Meme+Nhi+8C", quote: "Ch* đẻ cười lắm" },
+            { id: 8, name: "Nhật Minh", image: "https://placehold.co/600x600/3F51B5/ffffff?text=Meme+Nh%E1%BA%ADt+Minh+8C", quote: "Sing-gờ-mom💔" },
+            { id: 9, name: "Tú", image: "https://placehold.co/600x600/00BCD4/ffffff?text=Meme+T%C3%BA+8C", quote: "Téo bú" },
+            { id: 10, name: "Vy", image: "https://placehold.co/600x600/9C27B0/ffffff?text=Meme+Vy+8C", quote: "Vâu vỉ" },
+            { id: 11, name: "Thế Anh", image: "https://placehold.co/600x600/FF9800/ffffff?text=Meme+Th%E1%BA%BF+Anh+8C", quote: "Anh hơi chột!" },
+            { id: 12, name: "Thế Bảo", image: "https://placehold.co/600x600/607D8B/ffffff?text=Meme+Th%E1%BA%BF+B%E1%BA%A3o+8C", quote: "Cool ngầu" },
+            { id: 13, name: "Gia Bảo", image: "https://placehold.co/600x600/795548/ffffff?text=Meme+Gia+B%E1%BA%A3o+8C", quote: "Bảo lớn hay Bảo nhỏ đều hài!" },
+            { id: 14, name: "Chức", image: "https://cdn.phototourl.com/member/2026-10-18-0f1b338c-eb17-4f04-91e6-3b09dbc2a273.jpg", quote: "Chức vụ cao nhất là chùm dìm hàng!" },
+            { id: 15, name: "Khánh", image: "https://cdn.phototourl.com/member/2026-10-18-52d1a18d-5c22-40c9-a069-9f0168fb5294.jpg", quote: "Góc quay cận cảnh thần thánh của Khánh!" },
+            { id: 16, name: "Nam", image: "https://placehold.co/600x600/03A9F4/ffffff?text=Meme+Nam+8C", quote: "Nam thần trong lòng ai đó!" },
+            { id: 17, name: "Văn Hiếu", image: "https://placehold.co/600x600/673AB7/ffffff?text=Meme+V%C4%83n+Hi%E1%BA%BFu+8C", quote: "Hiếu Văn mơ mộng!" },
+            { id: 18, name: "Vũ Hiếu", image: "https://placehold.co/600x600/E91E63/ffffff?text=Meme+V%C3%B9+Hi%E1%BA%BFu+8C", quote: "Bộ ba Hiếu năng động!" },
+            { id: 19, name: "Đình Hiếu", image: "https://placehold.co/600x600/FF5722/ffffff?text=Meme+%C4%90%C3%ACnh+Hi%E1%BA%BFu+8C", quote: "Hiếu Đình đỉnh kình kình!" },
+            { id: 20, name: "Ánh", image: "https://placehold.co/600x600/FFEB3B/333333?text=Meme+%C3%81nh+8C", quote: "Tỏa sáng như ánh mặt trời!" },
+            { id: 21, name: "Thư", image: "https://placehold.co/600x600/009688/ffffff?text=Meme+Th%C6%B0+8C", quote: "Thư dịu dàng nhưng không dễ đùa!" },
+            { id: 22, name: "Uyên", image: "https://placehold.co/600x600/FF4081/ffffff?text=Meme+Uy%C3%AAn+8C", quote: "Bùa yêu của 8C!" },
+            { id: 23, name: "Khánh Linh", image: "https://placehold.co/600x600/7C4DFF/ffffff?text=Meme+Kh%C3%A1nh+Linh+8C", quote: "Linh xinh xắn xì teen!" },
+            { id: 24, name: "Huyền Trang", image: "https://placehold.co/600x600/536DFE/ffffff?text=Meme+Huy%E1%BB%81n+Trang+8C", quote: "Trang cá tính nhất lớp!" },
+            { id: 25, name: "Y Vân", image: "https://placehold.co/600x600/00E676/ffffff?text=Meme+Y+V%C3%A2n+8C", quote: "Y Vân và những khoảnh khắc bất hủ!" },
+            { id: 26, name: "Quang Huy", image: "https://placehold.co/600x600/FF6D00/ffffff?text=Meme+Quang+Huy+8C", quote: "Huy Quang rực rỡ!" },
+            { id: 27, name: "Gia Huy", image: "https://cdn.phototourl.com/member/2026-10-18-b04ef4ed-623d-4ce8-bd3a-7c260a6e497d.jpg", quote: "Huy Gia vô địch!" },
+            { id: 28, name: "Kiệt", image: "https://placehold.co/600x600/2979FF/ffffff?text=Meme+Ki%E1%BB%87t+8C", quote: "Kiệt xuất xuất thần!" },
+            { id: 29, name: "Hải", image: "https://cdn.phototourl.com/member/2026-10-18-e389284c-b26a-431c-a167-69f468a6c62a.jpg", quote: "Hải quay xe!" },
+            { id: 30, name: "Hoàng Quân", image: "https://placehold.co/600x600/1DE9B6/333333?text=Meme+Ho%C3%A0ng+Qu%C3%A2n+8C", quote: "Quân Hoàng tử hài hước!" },
+            { id: 31, name: "Lê Quân", image: "https://placehold.co/600x600/C6FF00/333333?text=Meme+L%C3%AA+Qu%C3%A2n+8C", quote: "Song Quân huyền thoại!" },
+            { id: 32, name: "Thịnh", image: "https://placehold.co/600x600/FFC400/333333?text=Meme+Th%E1%BB%8Bnh+8C", quote: "Thịnh vượng cùng 8C!" },
+            { id: 33, name: "Hào", image: "https://placehold.co/600x600/FF9100/ffffff?text=Meme+H%C3%A0o+8C", quote: "Anh hùng Hào kiệt!" },
+            { id: 34, name: "Trà My", image: "https://placehold.co/600x600/FF3D00/ffffff?text=Meme+Tr%C3%A0+My+8C", quote: "My trà sữa ngọt ngào!" },
+            { id: 35, name: "Ngoan", image: "https://placehold.co/600x600/D500F9/ffffff?text=Meme+Ngoan+8C", quote: "Tên Ngoan nhưng rất quậy!" },
+            { id: 36, name: "Diệu Linh", image: "https://cdn.phototourl.com/member/2026-10-18-8fecbacd-957c-4540-90fe-b684e4c44b6d.jpg", quote: "Linh kì diệu!" },
+            { id: 37, name: "Yến Trang", image: "https://placehold.co/600x600/3D5AFF/ffffff?text=Meme+Y%E1%BA%BFn+Trang+8C", quote: "Trang Yến dễ thương!" },
+            { id: 38, name: "Hoàng Quỳnh Anh", image: "https://placehold.co/600x600/00E5FF/ffffff?text=Meme+Ho%C3%A0ng+Qu%E1%BB%B3nh+Anh+8C", quote: "Quỳnh Anh 1 đáng yêu!" },
+            { id: 39, name: "Lê Quỳnh Anh", image: "https://cdn.phototourl.com/member/2026-10-18-93fc8a37-3b3c-48fb-99db-a83d57be6d7a.jpg", quote: "Quỳnh Anh 2 cá tính!" },
+            { id: 40, name: "Bắc", image: "https://placehold.co/600x600/00E676/ffffff?text=Meme+B%E1%BA%AFc+8C", quote: "Phương Bắc lạnh giá nhưng hài hước!" },
+            { id: 41, name: "Công", image: "https://placehold.co/600x600/76FF03/333333?text=Meme+C%C3%B4ng+8C", quote: "Công thành danh tạ!" },
+            { id: 42, name: "Tiến Minh", image: "https://placehold.co/600x600/C6FF00/333333?text=Meme+Ti%E1%BA%BFn+Minh+8C", quote: "Minh Tiến thông minh!" },
+            { id: 43, name: "Tiến Quang", image: "https://placehold.co/600x600/FFEA00/333333?text=Meme+Ti%E1%BA%BFn+Quang+8C", quote: "Quang Tiến hào quang!" },
+            { id: 44, name: "Phúc", image: "https://placehold.co/600x600/FFC400/333333?text=Meme+Ph%C3%BAc+8C", quote: "Phúc đức tràn đầy!" },
+            { id: 45, name: "Long", image: "https://placehold.co/600x600/FF9100/ffffff?text=Meme+Long+8C", quote: "Rồng bay phượng múa!" },
+            { id: 46, name: "Dương", image: "https://cdn.phototourl.com/member/2026-10-18-027381dd-1afd-4877-8ea3-411d0d83ca9b.jpg", quote: "Dương đại hiệp!" },
+            { id: 47, name: "Phương Linh", image: "https://placehold.co/600x600/DD2C00/ffffff?text=Meme+Ph%C6%B0%C1%A1ng+Linh+8C", quote: "Linh Phương ngô nghê!" },
+            { id: 48, name: "Tâm Như", image: "https://placehold.co/600x600/FN6000/ffffff?text=Meme+T%C3%A2m+Nh%C6%B0+8C", quote: "Như ý nguyện!" },
+            { id: 49, name: "Thảo My", image: "https://placehold.co/600x600/304FFE/ffffff?text=Meme+Th%E1%BA%A3o+My+8C", quote: "My Thảo điệu đà!" },
+            { id: 50, name: "Lan", image: "https://cdn.phototourl.com/member/2026-10-18-b585b6cb-1de9-423c-9ae8-2bca106d5fad.jpg", quote: "Hoa lan 8C thắm tươi!" },
+            { id: 51, name: "Chức 2", image: "https://placehold.co/600x600/6200EA/ffffff?text=Meme+Ch%E1%BB%A9c+2+8C", quote: "Chức bản sao 1!" },
+            { id: 52, name: "Chức 3", image: "https://placehold.co/600x600/0091EA/ffffff?text=Meme+Ch%E1%BB%A9c+3+8C", quote: "Chức bản sao 2 siêu hài!" }
+        ];
+
+        let currentActiveStudent = null;
+
+        // Chuẩn hóa chuỗi tiếng Việt để tìm kiếm chính xác (Bỏ dấu, gọt khoảng trắng)
+        function normalizeString(str) {
+            if (!str) return '';
+            return str
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[đĐ]/g, "d")
+                .replace(/[^a-z0-9]/g, "") // Loại bỏ các ký tự đặc biệt & khoảng trắng
+                .trim();
+        }
+
+        // Render danh sách 52 thành viên vào Grid
+        function renderMembersGrid() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+
+            MEME_DATA.forEach(student => {
+                const badge = document.createElement('button');
+                badge.className = `p-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-200 border text-left flex items-center justify-between gap-1 group bg-slate-900/80 hover:bg-purple-600/30 border-slate-700 hover:border-pink-500/60 text-slate-300 hover:text-white`;
+                badge.onclick = () => selectStudent(student);
+                
+                badge.innerHTML = `
+                    <span class="truncate"><strong class="text-pink-400 font-mono text-[11px] mr-1">${student.id}.</strong>${student.name}</span>
+                    <i class="fa-solid fa-fire text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity text-xs"></i>
+                `;
+                grid.appendChild(badge);
+            });
+        }
+
+        // Hàm chọn học sinh & hiển thị Meme
+        function selectStudent(student) {
+            currentActiveStudent = student;
+            const resultSection = document.getElementById('resultSection');
+            const noResultSection = document.getElementById('noResult');
+            
+            // Cập nhật thông tin vào Card
+            document.getElementById('studentName').innerText = `Meme của: ${student.name}`;
+            document.getElementById('studentId').innerText = `#STT: ${student.id}/52`;
+            document.getElementById('memeImage').src = student.image;
+            document.getElementById('memeQuote').innerText = `"${student.quote}"`;
+
+            // Cập nhật ô Input
+            document.getElementById('studentInput').value = student.name;
+
+            // Hiển thị Card kết quả
+            noResultSection.classList.add('hidden');
+            resultSection.classList.remove('hidden');
+
+            // Cuộn mượt đến vị trí hiển thị Meme
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Hàm Tìm kiếm từ Ô Input
+        function searchMeme() {
+            const rawQuery = document.getElementById('studentInput').value;
+            const cleanQuery = normalizeString(rawQuery);
+
+            if (!cleanQuery) {
+                showToast("Vui lòng nhập tên học sinh!");
+                return;
+            }
+
+            // Tìm kiếm chính xác hoặc khớp tương đối
+            const foundStudent = MEME_DATA.find(s => {
+                const cleanName = normalizeString(s.name);
+                return cleanName === cleanQuery || cleanName.includes(cleanQuery);
+            });
+
+            if (foundStudent) {
+                selectStudent(foundStudent);
+            } else {
+                document.getElementById('resultSection').classList.add('hidden');
+                document.getElementById('noResult').classList.remove('hidden');
+            }
+        }
+
+        // Tự động tìm kiếm khi người dùng gõ phím Enter
+        document.getElementById('studentInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchMeme();
+            }
+        });
+
+        // Sao chép link ảnh Meme
+        function copyMemeLink() {
+            if (!currentActiveStudent) return;
+            const imgUrl = currentActiveStudent.image;
+            
+            // Sao chép vào bộ nhớ tạm bằng execCommand
+            const dummyInput = document.createElement('input');
+            document.body.appendChild(dummyInput);
+            dummyInput.value = imgUrl;
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+
+            showToast("Đã sao chép đường dẫn ảnh!");
+        }
+
+        // Modal Đổi nhanh URL Ảnh Demo
+        function toggleEditUrlModal() {
+            if (!currentActiveStudent) return;
+            const modal = document.getElementById('urlModal');
+            document.getElementById('modalStudentName').innerText = currentActiveStudent.name;
+            document.getElementById('newUrlInput').value = currentActiveStudent.image;
+            modal.classList.toggle('hidden');
+        }
+
+        function saveCustomUrl() {
+            const newUrl = document.getElementById('newUrlInput').value.trim();
+            if (newUrl && currentActiveStudent) {
+                currentActiveStudent.image = newUrl;
+                document.getElementById('memeImage').src = newUrl;
+                showToast("Đã cập nhật ảnh thành công!");
+                toggleEditUrlModal();
+            }
+        }
+
+        // Hiển thị thông báo Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Khởi tạo trang web
+        window.onload = function() {
+            renderMembersGrid();
+            
+            // Mặc định chọn bạn đầu tiên (Phương Anh)
+            selectStudent(MEME_DATA[0]);
+        };
+    </script>
+</body>
+</html>
