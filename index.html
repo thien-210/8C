@@ -251,14 +251,17 @@
     <script>
         // CẤU HÌNH ÂM THANH MP3 (File music.mp3 nằm cùng thư mục)
         const memeAudio = new Audio('music.mp3');
+        memeAudio.loop = true; // Lặp lại bài hát khi chạy hết
         let isAudioEnabled = true;
 
         function playSound() {
             if (isAudioEnabled) {
-                memeAudio.currentTime = 0; // Phát lại từ đầu
-                memeAudio.play().catch(err => {
-                    console.log("Trình duyệt chặn tự động phát âm thanh:", err);
-                });
+                // Chỉ phát nếu nhạc đang dừng, tránh việc bấm sang tên khác bị tua lại từ đầu
+                if (memeAudio.paused) {
+                    memeAudio.play().catch(err => {
+                        console.log("Trình duyệt chặn tự động phát âm thanh:", err);
+                    });
+                }
             }
         }
 
@@ -269,6 +272,7 @@
             if (isAudioEnabled) {
                 icon.className = "fa-solid fa-volume-high text-pink-400";
                 text.innerText = "Âm thanh: BẬT";
+                memeAudio.play().catch(e => console.log(e));
                 showToast("Đã BẬT âm thanh!");
             } else {
                 icon.className = "fa-solid fa-volume-xmark text-slate-400";
@@ -380,7 +384,6 @@
 
             resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-            // Phát âm thanh khi chọn học sinh
             if (autoPlayAudio) {
                 playSound();
             }
@@ -458,7 +461,6 @@
 
         window.onload = function() {
             renderMembersGrid();
-            // Khởi tạo hiển thị bạn đầu tiên nhưng không phát nhạc tự động tránh bị trình duyệt chặn
             selectStudent(MEME_DATA[0], false);
         };
     </script>
