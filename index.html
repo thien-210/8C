@@ -75,6 +75,12 @@
         <div class="absolute -top-10 -left-10 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl"></div>
         
+        <!-- Nút Bật/Tắt Âm thanh -->
+        <button id="toggleAudioBtn" onclick="toggleMute()" class="absolute top-4 right-4 bg-purple-900/60 hover:bg-purple-800 text-yellow-300 border border-purple-500/50 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold flex items-center gap-2 shadow-lg transition-all z-20">
+            <i id="audioIcon" class="fa-solid fa-volume-high text-pink-400"></i>
+            <span id="audioText">Âm thanh: BẬT</span>
+        </button>
+
         <div class="max-w-4xl mx-auto relative z-10">
             <span class="inline-block px-4 py-1.5 bg-yellow-400 text-slate-900 font-bold rounded-full text-xs md:text-sm uppercase tracking-widest mb-3 shadow-lg transform -rotate-2">
                 🔥 Kho Tàng Khoảnh Khắc 8C 🔥
@@ -149,12 +155,6 @@
 
                 <!-- Image Container -->
                 <div class="relative bg-slate-950 rounded-2xl overflow-hidden border border-slate-700 group flex items-center justify-center min-h-[280px]">
-                    
-                    <!-- ========================================================================= -->
-                    <!-- HƯỚNG DẪN DÀNH CHO BẠN:                                                    -->
-                    <!-- Để thay đổi ảnh của từng học sinh, bạn tìm mảng 'MEME_DATA' ở phần JS cuối file -->
-                    <!-- ========================================================================= -->
-                    
                     <img 
                         id="memeImage" 
                         src="" 
@@ -212,7 +212,7 @@
 
     </main>
 
-    <!-- Modal sửa URL ảnh nhanh cho người dùng tiện thử nghiệm -->
+    <!-- Modal sửa URL ảnh nhanh -->
     <div id="urlModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-slate-800 border border-purple-500/40 rounded-3xl p-6 max-w-md w-full shadow-2xl">
             <div class="flex justify-between items-center mb-4">
@@ -249,16 +249,35 @@
 
     <!-- JavaScript Processing -->
     <script>
-        /**
-         * DANH SÁCH 52 THÀNH VIÊN LỚP 8C KÈM ĐƯỜNG DẪN ẢNH MEME
-         * 
-         * =========================================================================
-         * HƯỚNG DẪN THAY ĐỔI ĐƯỜNG DẪN ẢNH:
-         * Thay thế liên kết trong thuộc tính "image" dưới đây bằng link ảnh của bạn.
-         * Ví dụ: image: "https://ten-mien-cua-ban.com/anh-phuong-anh.jpg"
-         * hoặc nếu để cùng thư mục HTML: image: "images/phuong-anh.jpg"
-         * =========================================================================
-         */
+        // CẤU HÌNH ÂM THANH MP3 (File music.mp3 nằm cùng thư mục)
+        const memeAudio = new Audio('music.mp3');
+        let isAudioEnabled = true;
+
+        function playSound() {
+            if (isAudioEnabled) {
+                memeAudio.currentTime = 0; // Phát lại từ đầu
+                memeAudio.play().catch(err => {
+                    console.log("Trình duyệt chặn tự động phát âm thanh:", err);
+                });
+            }
+        }
+
+        function toggleMute() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const text = document.getElementById('audioText');
+            if (isAudioEnabled) {
+                icon.className = "fa-solid fa-volume-high text-pink-400";
+                text.innerText = "Âm thanh: BẬT";
+                showToast("Đã BẬT âm thanh!");
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-slate-400";
+                text.innerText = "Âm thanh: TẮT";
+                memeAudio.pause();
+                showToast("Đã TẮT âm thanh!");
+            }
+        }
+
         const MEME_DATA = [
             { id: 1, name: "Phương Anh", image: "https://i.ibb.co/ycQqPGdg/pa.jpg", quote: "Kẻ tự cô lập cả lớp" },
             { id: 2, name: "Tiến", image: "https://cdn.phototourl.com/member/2026-10-18-c446abd1-ac2b-477f-990a-a8edbe189798.jpg", quote: "Nhìn cái gì mà nhìn?" },
@@ -316,7 +335,6 @@
 
         let currentActiveStudent = null;
 
-        // Chuẩn hóa chuỗi tiếng Việt để tìm kiếm chính xác (Bỏ dấu, gọt khoảng trắng)
         function normalizeString(str) {
             if (!str) return '';
             return str
@@ -324,11 +342,10 @@
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .replace(/[đĐ]/g, "d")
-                .replace(/[^a-z0-9]/g, "") // Loại bỏ các ký tự đặc biệt & khoảng trắng
+                .replace(/[^a-z0-9]/g, "")
                 .trim();
         }
 
-        // Render danh sách 52 thành viên vào Grid
         function renderMembersGrid() {
             const grid = document.getElementById('membersGrid');
             grid.innerHTML = '';
@@ -346,30 +363,29 @@
             });
         }
 
-        // Hàm chọn học sinh & hiển thị Meme
-        function selectStudent(student) {
+        function selectStudent(student, autoPlayAudio = true) {
             currentActiveStudent = student;
             const resultSection = document.getElementById('resultSection');
             const noResultSection = document.getElementById('noResult');
             
-            // Cập nhật thông tin vào Card
             document.getElementById('studentName').innerText = `Meme của: ${student.name}`;
             document.getElementById('studentId').innerText = `#STT: ${student.id}/52`;
             document.getElementById('memeImage').src = student.image;
             document.getElementById('memeQuote').innerText = `"${student.quote}"`;
 
-            // Cập nhật ô Input
             document.getElementById('studentInput').value = student.name;
 
-            // Hiển thị Card kết quả
             noResultSection.classList.add('hidden');
             resultSection.classList.remove('hidden');
 
-            // Cuộn mượt đến vị trí hiển thị Meme
             resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Phát âm thanh khi chọn học sinh
+            if (autoPlayAudio) {
+                playSound();
+            }
         }
 
-        // Hàm Tìm kiếm từ Ô Input
         function searchMeme() {
             const rawQuery = document.getElementById('studentInput').value;
             const cleanQuery = normalizeString(rawQuery);
@@ -379,33 +395,29 @@
                 return;
             }
 
-            // Tìm kiếm chính xác hoặc khớp tương đối
             const foundStudent = MEME_DATA.find(s => {
                 const cleanName = normalizeString(s.name);
                 return cleanName === cleanQuery || cleanName.includes(cleanQuery);
             });
 
             if (foundStudent) {
-                selectStudent(foundStudent);
+                selectStudent(foundStudent, true);
             } else {
                 document.getElementById('resultSection').classList.add('hidden');
                 document.getElementById('noResult').classList.remove('hidden');
             }
         }
 
-        // Tự động tìm kiếm khi người dùng gõ phím Enter
         document.getElementById('studentInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchMeme();
             }
         });
 
-        // Sao chép link ảnh Meme
         function copyMemeLink() {
             if (!currentActiveStudent) return;
             const imgUrl = currentActiveStudent.image;
             
-            // Sao chép vào bộ nhớ tạm bằng execCommand
             const dummyInput = document.createElement('input');
             document.body.appendChild(dummyInput);
             dummyInput.value = imgUrl;
@@ -416,7 +428,6 @@
             showToast("Đã sao chép đường dẫn ảnh!");
         }
 
-        // Modal Đổi nhanh URL Ảnh Demo
         function toggleEditUrlModal() {
             if (!currentActiveStudent) return;
             const modal = document.getElementById('urlModal');
@@ -435,7 +446,6 @@
             }
         }
 
-        // Hiển thị thông báo Toast
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = message;
@@ -446,12 +456,10 @@
             }, 3000);
         }
 
-        // Khởi tạo trang web
         window.onload = function() {
             renderMembersGrid();
-            
-            // Mặc định chọn bạn đầu tiên (Phương Anh)
-            selectStudent(MEME_DATA[0]);
+            // Khởi tạo hiển thị bạn đầu tiên nhưng không phát nhạc tự động tránh bị trình duyệt chặn
+            selectStudent(MEME_DATA[0], false);
         };
     </script>
 </body>
